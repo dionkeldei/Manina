@@ -2,20 +2,17 @@ const obj = {
   get: function () {
     const path = require('path');
     const fs = require('fs');
+    var classArr = []
     //joining path of directory
     const directoryPath = './application/controllers';
     //passsing directoryPath and callback function
-    fs.readdir(directoryPath, function (err, files) {
-      //handling error
-      if (err) {
-          return console.log('Unable to scan directory: ' + err);
-      }
-      //listing all files using forEach
-      files.forEach(function (file) {
-          // Do whatever you want to do with the file
-          console.log(file);
-      });
-    });
+    var files = fs.readdirSync(directoryPath);
+    for(var i in files){
+      var clas = require('../../../application/controllers/'+files[i]);
+      var obj = {name: clas.name, class: clas}
+      classArr.push(obj)
+    }
+    return classArr;
   }
 }
 

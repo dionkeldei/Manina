@@ -3,4 +3,4 @@ class Controller {
 }
 
 
-export.modules = Controller
+module.exports = Controller
