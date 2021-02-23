@@ -5,16 +5,27 @@ class route {
     this.port = 5000
   }
 
+  isFunction(f){
+    if (typeof f === 'function') {
+      return true
+    }
+    return false
+  }
+
   get(route,action){
-    this.app.get(route, (req, res) => {
-      res.send(action)
-    })
+    if(this.isFunction(action)){
+      this.app.get(route, (req, res) => {
+        res.send(action())
+      })
+    }
   }
 
   post(route,action){
-    this.app.post(route, (req, res) => {
-      res.send(action)
-    })
+    if(this.isFunction(action)){
+      this.app.post(route, (req, res) => {
+        res.send(action())
+      })
+    }
   }
 
   serve(){
