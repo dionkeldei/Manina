@@ -1,6 +1,6 @@
 const Controller = require('../../node_modules/framework/controllers/controller');
 
-class HelloController extends Controller {
+class CarController extends Controller {
 
      index(){
        return "soy index"
@@ -10,9 +10,9 @@ class HelloController extends Controller {
        return request;
      }
 
-     show(id,name){
-       return 'id:'+id+' <br>name:'+name;
+     show(id){
+
      }
 }
 
-module.exports = HelloController
+module.exports = CarController
