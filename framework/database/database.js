@@ -2,27 +2,29 @@ var d = {
   config: require('../../../config/database.js'),
   mysql: require('mysql'),
   connection: {},
-  connect: function () {
+  connectMySql: function (preset) {
     var con = this.mysql.createConnection({
-      host: this.config.host,
-      user: this.config.user,
-      password: this.config.password,
-      database: this.config.database
+      host: this.config[preset].host,
+      user: this.config[preset].user,
+      password: this.config[preset].password,
+      database: this.config[preset].database
     });
     return con;
   },
-  query: function (query) {
-    var con = this.connect();
-    con.connect(function(err) {
-      if (err) throw err;
-    });
-    var sql = query;
-    con.query(sql, function (err, result) {
-     if (err) throw err;
-    });
-    return {
-      success: true,
-      query: query
+  query: function (query, preset='default') {
+    if(this.config[preset].driver == 'mysql'){
+      var con = this.connectMySql(preset);
+      con.connect(function(err) {
+        if (err) throw err;
+      });
+      var sql = query;
+      con.query(sql, function (err, result) {
+       if (err) throw err;
+      });
+      return {
+        success: true,
+        query: query
+      }
     }
   }
 
