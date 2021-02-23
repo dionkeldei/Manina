@@ -15,6 +15,10 @@ class HelloController extends Controller {
        return 'id:'+id;
      }
 
+     edit(id){
+        return 'soy edit: '+id   
+     }
+
      update(request,id){
        console.log(request)
        return "Hola mi request es: "+request+'<br>Y mi id es: '+id;

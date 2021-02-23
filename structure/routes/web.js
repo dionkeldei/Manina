@@ -18,6 +18,7 @@ var route = new Route;
 route.get('/hello', "index@HelloController" );
 route.post('/hello', "store@HelloController" );
 route.get('/hello/:id', "show@HelloController" );
+route.get('/hello/:id/edit', "edit@HelloController" );
 route.post('/hello/:id', "update@HelloController" );
 
 
