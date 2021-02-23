@@ -11,6 +11,12 @@ class route {
     })
   }
 
+  post(route,action){
+    this.app.post(route, (req, res) => {
+      res.send(action)
+    })
+  }
+
   serve(){
     this.app.listen(this.port, () => {
       console.log(`Example app listening at http://localhost:${this.port}`)
