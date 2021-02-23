@@ -38,6 +38,22 @@ class route {
 
   }
 
+  resource(route,action){
+    var route = this.getVariableValues(route);
+    var url = ''
+    for(var i in route){
+      url += '/'+route[i]
+    }
+    this.get(url,'index@'+action);
+    this.get(url+'/create','create@'+action);
+    this.get(url+'/:id','show@'+action);
+    this.post(url,'store@'+action);
+    this.get(url+'/:id/edit','edit@'+action);
+    this.post(url+'/:id','update@'+action);
+    this.post(url+'/:id/delete','delete@'+action);
+
+  }
+
   get(route,action){
     if(!this.isFunction(action)){
       action = this.getControllerFunction(action)
