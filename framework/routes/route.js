@@ -99,6 +99,9 @@ class route {
          values.push(req.params[value])
        }
     }else{
+      if(post){
+        return action(req.body)
+      }
       return action()
     }
     switch(values.length){

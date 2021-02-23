@@ -7,11 +7,17 @@ class HelloController extends Controller {
      }
 
      store(request){
-       return request;
+       console.log(request)
+       return "soy store";
      }
 
-     show(id,name){
-       return 'id:'+id+' <br>name:'+name;
+     show(id){
+       return 'id:'+id;
+     }
+
+     update(request,id){
+       console.log(request)
+       return "Hola mi request es: "+request+'<br>Y mi id es: '+id;
      }
 }
 
