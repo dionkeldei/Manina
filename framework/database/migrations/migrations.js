@@ -5,8 +5,8 @@ class Migrations{
 
   migrate(){
     var migrations = this.get();
-    var initQuery = ''
     for(var x in migrations){
+      var initQuery = ''
       var table = new migrations[x].class
       table = table.table()
       initQuery += "CREATE TABLE "+table.name+" ("
@@ -14,9 +14,10 @@ class Migrations{
         initQuery += key+' '+table.table[key]+', ';
       }
       initQuery = initQuery.slice(0, -2)
-      initQuery += ');'
+      initQuery += ');\n'
+      console.log(initQuery);
+      console.log(this.database.query(initQuery));
     }
-    console.log(initQuery)
   }
 
   get () {
@@ -61,7 +62,7 @@ class Migrations{
         return extras(string)
       },
       timeStamp: function (num=255){
-        var string = "date NOT NULL"
+        var string = "timestamp NOT NULL"
         return extras(string)
       }
     }

@@ -6,13 +6,13 @@ class CarsTable extends Migrations {
       return {
         name: 'cars',
         table: {
-          id: table.integer(255).autoincrement().do(),
+          id: table.integer(255).do(),
           name: table.string(255).do(),
           marca: table.string(255).do(),
           año: table.integer(255).do(),
           placa: table.string(255).do(),
-          created_at: table.timeStamp().do(),
-          updated_at: table.timeStamp().do()
+          created_at: table.timeStamp().null().do(),
+          updated_at: table.timeStamp().null().do()
         }
       }
     }

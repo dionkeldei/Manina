@@ -6,12 +6,12 @@ class UsersTable extends Migrations {
       return {
         name: 'users',
         table: {
-          id: table.integer(255).autoincrement().do(),
+          id: table.integer(255).do(),
           name: table.string(255).do(),
           email: table.string(255).null().do(),
           password: table.string(255).do(),
-          created_at: table.timeStamp().do(),
-          updated_at: table.timeStamp().do()
+          created_at: table.timeStamp().null().do(),
+          updated_at: table.timeStamp().null().do()
         }
       }
     }
