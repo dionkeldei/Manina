@@ -7,7 +7,6 @@ class Migrations{
     var migrations = this.get();
     var initQuery = ''
     for(var x in migrations){
-      console.log(migrations[x])
       var table = new migrations[x].class
       table = table.table()
       initQuery += "CREATE TABLE "+table.name+" ("
@@ -15,7 +14,7 @@ class Migrations{
         initQuery += key+' '+table.table[key]+', ';
       }
       initQuery = initQuery.slice(0, -2)
-      initQuery += ');\n'
+      initQuery += ');'
     }
     console.log(initQuery)
   }
@@ -37,18 +36,38 @@ class Migrations{
   }
 
   table_types() {
+    var extras = function (string) {
+      return {
+        autoincrement: function () {
+          string+=' AUTO_INCREMENT'
+          return this
+        },
+        null: function () {
+          string = string.replace("NOT NULL", "");
+          return this
+        },
+        do: function () {
+          return string
+        }
+      }
+    }
     return {
       integer: function (num=255){
-        return "int"
+        var string = 'int NOT NULL'
+        return extras(string)
       },
       string: function (num=255){
-        return "varchar("+num+")"
+        var string = "varchar("+num+") NOT NULL"
+        return extras(string)
       },
       timeStamp: function (num=255){
-        return "date"
+        var string = "date NOT NULL"
+        return extras(string)
       }
     }
   }
+
+
 }
 
 module.exports = Migrations
