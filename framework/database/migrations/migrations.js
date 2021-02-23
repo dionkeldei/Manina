@@ -20,6 +20,7 @@ class Migrations{
         console.log('Table "'+table.name+'" created succesfully!\n');
       }
     }
+    setTimeout(function(){process.exit()},3000)
   }
 
   get () {
