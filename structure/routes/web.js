@@ -20,6 +20,7 @@ route.post('/hello', "store@HelloController" );
 route.get('/hello/:id', "show@HelloController" );
 route.get('/hello/:id/edit', "edit@HelloController" );
 route.post('/hello/:id', "update@HelloController" );
+route.get('/cars/:id', "getCars@CarController" );
 
 
 /*******/

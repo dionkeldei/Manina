@@ -2,16 +2,8 @@ const Controller = require('../../node_modules/framework/controllers/controller'
 
 class CarController extends Controller {
 
-     index(){
-       return "soy index"
-     }
-
-     store(request){
-       return request;
-     }
-
-     show(id){
-
+     getCars(id){
+       return "soy get cars con id: "+id
      }
 }
 
