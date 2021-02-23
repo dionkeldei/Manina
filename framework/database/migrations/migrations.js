@@ -9,14 +9,16 @@ class Migrations{
       var initQuery = ''
       var table = new migrations[x].class
       table = table.table()
+      console.log('Migrating "'+table.name+'" table...')
       initQuery += "CREATE TABLE "+table.name+" ("
       for(var key in table.table){
         initQuery += key+' '+table.table[key]+', ';
       }
       initQuery = initQuery.slice(0, -2)
       initQuery += ');\n'
-      console.log(initQuery);
-      console.log(this.database.query(initQuery));
+      if(this.database.query(initQuery).success){
+        console.log('Table "'+table.name+'" created succesfully!\n');
+      }
     }
   }
 
